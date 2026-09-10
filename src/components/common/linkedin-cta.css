@@ -1,0 +1,16 @@
+.linkedin-cta { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 44px; padding: 12px 16px; border: 1px solid currentColor; font: 11px/1.5 'JetBrains Mono', monospace; text-decoration: none; }
+.linkedin-cta:hover { filter: brightness(1.2); }
+.linkedin-cta:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+.linkedin-cta--eco { color: #b8e0c8; background: #12271b; border-color: #365943; border-radius: 999px; }
+.linkedin-cta--executive { color: #e8e8e8; background: #111; border-color: #555; text-transform: uppercase; letter-spacing: .04em; }
+.linkedin-cta--jukebox { color: #f4e7cf; background: #943f2b; border-color: #943f2b; border-radius: 3px; }
+.journey-guest-connect { position: absolute; left: 56%; bottom: 96px; z-index: 22; }
+.journey-host-connect { position: absolute; left: 22%; bottom: 100px; z-index: 22; }
+.journey--simplified .journey-host-connect { left: 57%; bottom: 100px; }
+.journey--simplified .journey-guest-connect { left: 53%; bottom: 85px; }
+@media (max-width: 759px) {
+  .journey-guest-connect { left: auto; right: 7%; bottom: 80px; }
+  .journey-host-connect { left: 7%; bottom: 76px; }
+  .journey-guest-connect .linkedin-cta, .journey-host-connect .linkedin-cta { font-size: 9px; padding: 9px 12px; }
+  .journey--simplified .journey-guest-connect, .journey--simplified .journey-host-connect { position: relative; inset: auto; }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "MangoMagic - Next-Gen Podcast Experiences",
+  "description": "Flagship digital podcast experiences exploring Eco Editorial, Executive Interview, and Experimental Spatial Jukebox interfaces.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

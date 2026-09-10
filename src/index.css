@@ -1,0 +1,152 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-serif: 'Fraunces', Georgia, serif;
+    --font-display: 'Syne', sans-serif;
+    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    color-scheme: dark;
+  }
+}
+
+.font-editorial {
+  font-family: 'Fraunces', Georgia, serif;
+}
+
+.font-display {
+  font-family: 'Syne', sans-serif;
+}
+
+.font-sans-clean {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.font-mono-tech {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* 3D and Spatial Transforms */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.perspective-1400 {
+  perspective: 1400px;
+}
+
+.preserve-3d,
+.transform-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+/* Vinyl Record Shimmer & Concentric Grooves */
+.vinyl-grooves {
+  background: radial-gradient(
+    circle at center,
+    #111 0%,
+    #111 16%,
+    #050505 16.5%,
+    #181818 17%,
+    #090909 18%,
+    #1c1c1c 20%,
+    #0a0a0a 24%,
+    #1f1f1f 28%,
+    #0d0d0d 33%,
+    #212121 39%,
+    #0a0a0a 45%,
+    #1e1e1e 52%,
+    #0c0c0c 60%,
+    #222222 68%,
+    #0f0f0f 78%,
+    #1a1a1a 88%,
+    #080808 96%,
+    #000000 100%
+  );
+}
+
+.vinyl-sheen {
+  background: conic-gradient(
+    from 45deg,
+    rgba(255, 255, 255, 0.12) 0deg,
+    transparent 60deg,
+    rgba(255, 255, 255, 0.15) 120deg,
+    transparent 180deg,
+    rgba(255, 255, 255, 0.12) 240deg,
+    transparent 300deg,
+    rgba(255, 255, 255, 0.15) 360deg
+  );
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Glass & Texture Accents */
+.glass-panel {
+  background: rgba(18, 18, 22, 0.72);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.subtle-paper-grain {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* Magic UI Meteors Animation */
+@keyframes meteor {
+  0% {
+    transform: rotate(215deg) translateX(0);
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(215deg) translateX(-800px);
+    opacity: 0;
+  }
+}
+
+.animate-meteor {
+  animation: meteor 5s linear infinite;
+}
+
+/* Magic UI Ripple Animation */
+@keyframes ripple {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(0.92);
+  }
+}
+
+.animate-ripple {
+  animation: ripple var(--duration, 3s) ease-in-out calc(var(--i, 0) * 0.22s) infinite;
+}
