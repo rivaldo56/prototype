@@ -1,0 +1,58 @@
+/* Frequency: the shared sections restyled as kinetic poster blocks, so no two worlds read alike. */
+.frequency-world .pw-nav { border-bottom-color: #e8f08c55; }
+
+/* Chapters as a dotted signal timeline instead of ruled rows. */
+.frequency-world .pw-note { border-top: 0; border-left: 1px solid #e8f08c66; margin-left: 6px; padding-left: 34px; position: relative; }
+.frequency-world .pw-note::before { content: ''; position: absolute; left: -5px; top: 30px; width: 9px; height: 9px; border-radius: 50%; background: #e8f08c; }
+.frequency-world .pw-note > button { padding: 20px 0; min-height: 0; }
+.frequency-world .pw-note-body { padding: 0 0 24px; }
+.frequency-world .pw-note:last-child { border-bottom: 0; }
+
+/* Takeaways as full-width poster rows with outline index numerals. */
+.frequency-world .pw-takeaway-grid { grid-template-columns: 1fr; border-top: 0; }
+.frequency-world .pw-takeaway-grid > button,
+.frequency-world .pw-takeaway-grid > button:not(:first-child) {
+  flex-direction: row; flex-wrap: wrap; align-items: baseline; gap: 12px 30px;
+  min-height: 0; padding: 30px 0; border-right: 0; border-top: 1px solid #e8f08c44;
+  transition: transform .25s ease;
+}
+.frequency-world .pw-takeaway-grid > button:last-child { border-bottom: 1px solid #e8f08c44; }
+.frequency-world .pw-takeaway-grid > button:hover { transform: translateX(14px); }
+.frequency-world .pw-takeaway-grid > button > .pw-eyebrow {
+  min-width: 74px; font: 800 26px/1 'Syne', sans-serif; letter-spacing: 0;
+  color: transparent; -webkit-text-stroke: 1px #e8f08c;
+}
+.frequency-world .pw-takeaway-grid strong { margin: 0; flex: 0 1 30%; font: 600 clamp(20px, 2.4vw, 32px)/1.15 'Syne', sans-serif; }
+.frequency-world .pw-takeaway-grid p { flex: 1 1 240px; opacity: .8; font-size: 14px; }
+.frequency-world .pw-takeaway-grid > button > span:last-child { margin: 0; padding: 0; margin-left: auto; }
+
+/* Transcript as oversized staggered pull-lines with acid time chips. */
+.frequency-world .pw-transcript { border-block: 0; }
+.frequency-world .pw-transcript-lines > button { grid-template-columns: auto 1fr; gap: 14px; align-items: center; border-top: 0; padding: 26px 0; }
+.frequency-world .pw-transcript-lines > button + button { border-top: 1px dashed #e8f08c44; }
+.frequency-world .pw-transcript-lines > button:nth-child(even) { padding-left: 10%; }
+.frequency-world .pw-transcript-lines > button > span { order: 1; font: 600 11px 'Syne', sans-serif; letter-spacing: .08em; }
+.frequency-world .pw-transcript-lines time { order: 2; background: #e8f08c; color: #1e201a; padding: 5px 9px; border-radius: 999px; }
+.frequency-world .pw-transcript-lines p { order: 3; grid-column: 1 / -1; margin-top: 12px; font-size: clamp(20px, 2.6vw, 34px); line-height: 1.35; }
+
+/* Guest portrait as an orbiting dial. */
+.frequency-world .pw-profile-image img { border-radius: 50%; aspect-ratio: 1; object-position: center 30%; }
+.frequency-world .pw-profile-image::after { content: ''; position: absolute; inset: -20px; border: 1px dashed #e8f08c88; border-radius: 50%; animation: frequency-turn 26s linear infinite; }
+.frequency-world .pw-profile h2 { font-size: clamp(40px, 5vw, 76px); }
+
+/* Platforms as a row of bordered chips. */
+.frequency-world .pw-connections nav { display: flex; flex-wrap: wrap; gap: 14px; }
+.frequency-world .pw-connections nav a { display: inline-flex; align-items: center; gap: 14px; border: 1px solid #e8f08c; border-radius: 999px; padding: 16px 24px; }
+.frequency-world .pw-connections nav a:hover { background: #e8f08c; color: #1e201a; }
+
+/* Footer flipped to an acid slab. */
+.frequency-world .pw-footer { margin: 0; border-top: 0; background: #e8f08c; color: #1e201a; padding: 46px 7% 50px; }
+
+@media (max-width: 767px) {
+  .frequency-world .pw-takeaway-grid > button,
+  .frequency-world .pw-takeaway-grid > button:not(:first-child) { flex-direction: column; align-items: flex-start; gap: 14px; padding: 26px 0; }
+  .frequency-world .pw-takeaway-grid > button:hover { transform: none; }
+  .frequency-world .pw-takeaway-grid > button > span:last-child { margin-left: 0; }
+  .frequency-world .pw-transcript-lines > button:nth-child(even) { padding-left: 0; }
+  .frequency-world .pw-profile-image { max-width: 240px; }
+}

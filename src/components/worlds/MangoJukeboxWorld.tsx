@@ -7,10 +7,12 @@ import { ArrowDown, ArrowUpRight, ChevronRight, Disc3 } from 'lucide-react';
 import type { Episode, WorldType } from '../../types';
 import { audioEngine } from '../../utils/audioEngine';
 import { PodcastPlatformLinks } from '../common/PodcastConnections';
-import { EpisodeCrate, PlayRecordButton, SleeveBack, SleeveFront, SponsorSleeves, VinylDisc, formatRecordTime } from './jukebox/SleeveJourneyParts';
+import { PlayRecordButton, SleeveBack, SleeveFront, SponsorSleeves, VinylDisc, formatRecordTime } from './jukebox/SleeveJourneyParts';
+import { CoverflowCarousel } from '../ui/coverflow-carousel';
 import { PhysicalRecordStage } from './jukebox/PhysicalRecordStage';
 import { HOST } from './jukebox/SleeveJourneyParts';
 import './jukebox/sleeve-journey.css';
+import '../ui/record-collection.css';
 
 interface MangoJukeboxWorldProps {
   episodes: Episode[];
@@ -102,7 +104,7 @@ export const MangoJukeboxWorld: FC<MangoJukeboxWorldProps> = ({ episodes, active
   const scale = useTransform(position, stops, [mobile ? (shortScreen ? .58 : .8) : Math.min(size.width * .51, size.height * .87) / baseSize, .94, mobile ? .7 : .94, .75, .53, 1.25, aboutZoom, (aboutZoom + hostZoom) / 2, hostZoom, 1, .43, .43, .43, .43]);
   const rotateY = useTransform(position, stops, [-24, 65, 180, 260, 360, 460, 540, 540, 540, 630, 720, 720, 720, 720]);
   const rotateZ = useTransform(position, stops, [-9, 2, -5, -10, -5, 0, 0, 0, 0, -18, 14, 14, 14, 14]);
-  const objectOpacity = useTransform(position, [0, 1.7, 1.98, 2.15, 2.48, 5.75, 5.85, 6], [1, 1, 0, 0, 1, 1, 0, 0]);
+  const objectOpacity = useTransform(position, [0, 5.75, 5.85, 6], [1, 1, 0, 0]);
   const playExposure = useSpring(isPlaying ? .52 : .08, { stiffness: 70, damping: 18 });
   useEffect(() => { playExposure.set(isPlaying ? .52 : .08); }, [isPlaying, playExposure]);
   const extractionWindow = useTransform(position, [0, .25, .65, 6], [1, 1, 0, 0]);
@@ -181,7 +183,29 @@ export const MangoJukeboxWorld: FC<MangoJukeboxWorldProps> = ({ episodes, active
 
         <JourneyScene index={2} {...sceneProps}>
           <div className="journey-crate-heading"><p className="journey-kicker">02 / The episode collection</p><h2>Go on. Dig a little.</h2><p>Every sleeve has a story. Find your next one.</p></div>
-          <EpisodeCrate episodes={episodes} selected={activeEpisode} onSelect={onSelectEpisode} onStep={stepEpisode} />
+          <CoverflowCarousel
+            className="journey-crate-carousel"
+            cardClassName="journey-cover-card"
+            label="Episode crate"
+            reducedMotion={simplified}
+            cardWidth="clamp(160px, min(23vw, 36svh), 310px)"
+            renderSlide={(_, index) => <SleeveFront episode={episodes[index]} compact />}
+            showPagination
+            showNavigation
+            defaultIndex={episodes.findIndex(episode => episode.id === activeEpisode.id)}
+            onSlideChange={index => onSelectEpisode(episodes[index])}
+            slides={episodes.map(episode => ({
+              src: episode.portraitImage,
+              alt: `Sleeve portrait of ${episode.guestName}`,
+              title: episode.title,
+              subtitle: `With ${episode.guestName}`,
+              meta: [
+                { label: 'Episode', value: `EP ${episode.episodeNumber}` },
+                { label: 'Length', value: episode.duration },
+                { label: 'Released', value: episode.releaseDate },
+              ],
+            }))}
+          />
           <div className="journey-crate-selection" aria-live="polite"><span className="journey-kicker">SELECTED / EP {activeEpisode.episodeNumber}</span><h3>{activeEpisode.guestName}</h3><p>{activeEpisode.title}</p><PlayRecordButton playing={isPlaying} onClick={togglePlay} /></div>
         </JourneyScene>
 

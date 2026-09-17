@@ -1,0 +1,33 @@
+/* Printed sleeves, catalogue controls and a clear centre selection. */
+.sleeve-journey:not(.journey--simplified) [data-record-in-collection='true'] .journey-cover-card[aria-current='true'] { visibility: hidden; }
+.sleeve-journey .journey-crate-carousel { position: absolute; left: 50%; top: 28%; width: min(680px, 55vw); transform: translateX(-50%); color: #292b23; }
+.sleeve-journey .journey-cover-card { border: 1px solid #e5d8b5; border-radius: 1px; background: #a6492f; box-shadow: -4px 2px 0 #9b9277, 0 22px 28px #292b2338; }
+.journey-cover-card .sleeve-print { border: 5px solid #d5cbb7; }
+.journey-cover-card .sleeve-masthead { font-size: 13cqw; letter-spacing: -.06em; }
+.journey-cover-card .sleeve-title { font-size: 10cqw; }
+.journey-cover-card .sleeve-bottom { font-size: 2.5cqw; }
+.journey-crate-carousel button { color: #292b23; border: 1px solid #292b2355; background: #e9dfc9; border-radius: 0; min-width: 44px; min-height: 44px; }
+.journey-crate-carousel button:hover { color: #f3e9d5; background: #a6492f; }
+.journey-crate-carousel button:focus-visible, .journey-crate-carousel [tabindex]:focus-visible { outline: 2px solid #a6492f; outline-offset: 4px; }
+.journey-crate-carousel button[aria-current] { min-width: 28px; min-height: 28px; width: 28px; height: 28px; border: 0; background: transparent; opacity: 1; }
+.journey-crate-carousel button[aria-current]::after { content: ''; display: block; width: 6px; height: 6px; margin: auto; background: #292b2355; border-radius: 50%; }
+.journey-crate-carousel button[aria-current='true']::after { width: 16px; border-radius: 0; background: #a6492f; }
+.sleeve-journey .journey-crate-heading { width: 26%; max-width: 340px; top: 13%; }
+.sleeve-journey .journey-crate-heading h2 { font-size: clamp(30px, 3.6vw, 54px); }
+.sleeve-journey .journey-crate-heading p:last-child { max-width: 230px; }
+.sleeve-journey .journey-crate-selection { top: 45%; left: 78%; right: 4%; border-top: 1px solid #292b2355; padding-top: 18px; }
+.journey-crate-selection h3 { margin-top: 12px; }
+.journey--simplified .journey-scene--2 { min-height: 720px; }
+.journey--simplified .journey-crate-carousel { top: 28%; }
+@media (max-width: 759px) {
+  .sleeve-journey .journey-crate-heading { left: 7%; top: 10%; width: 86%; max-width: none; }
+  .sleeve-journey .journey-crate-heading h2 { font-size: 32px; }
+  .sleeve-journey .journey-crate-carousel { top: 28%; width: 96%; }
+  .sleeve-journey .journey-crate-selection { left: 7%; right: 7%; top: 77%; width: auto; padding-top: 12px; }
+  .journey-crate-selection h3 { margin-top: 0; }
+  .journey-crate-carousel [role='group'] { border-width: 1px; }
+  .journey--simplified .journey-scene--2 { min-height: 0; }
+  .journey--simplified .journey-crate-carousel { position: relative; inset: auto; transform: none; margin: 0 auto; }
+  .journey--simplified .journey-crate-selection { position: relative; inset: auto; width: 100%; margin: 0; }
+}
+@media (prefers-reduced-motion: reduce) { .journey-crate-carousel * { transition: none !important; } }

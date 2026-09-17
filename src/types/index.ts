@@ -58,4 +58,4 @@ export interface Episode {
   };
 }
 
-export type WorldType = 'eco' | 'executive' | 'jukebox';
+export type WorldType = 'eco' | 'executive' | 'jukebox' | 'margin' | 'shuffle' | 'frequency' | 'atelier';

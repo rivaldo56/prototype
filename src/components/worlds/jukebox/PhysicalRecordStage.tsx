@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { collectionPose } from './collectionPose';
 import type { FC } from 'react';
 import type { MotionValue } from 'motion/react';
 import * as THREE from 'three';
@@ -166,9 +167,10 @@ export const PhysicalRecordStage: FC<Props> = props => {
       if (p.width !== lastWidth || p.height !== lastHeight) {
         lastWidth = p.width; lastHeight = p.height; renderer.setSize(p.width, p.height, false); camera.left = -p.width / 2; camera.right = p.width / 2; camera.top = p.height / 2; camera.bottom = -p.height / 2; camera.updateProjectionMatrix();
       }
-      const sleeveScale = p.baseSize * p.scale.get();
-      sleeve.position.set(p.x.get(), -p.y.get(), 30); sleeve.scale.setScalar(sleeveScale);
-      sleeve.rotation.set(progress < .5 ? .12 : 0, radians(p.rotateY.get()), -radians(p.rotateZ.get()));
+      const pose = collectionPose(element, progress, p.x.get(), p.y.get(), p.baseSize * p.scale.get(), p.rotateY.get(), p.rotateZ.get());
+      const sleeveScale = pose.size;
+      sleeve.position.set(pose.x, -pose.y, 30); sleeve.scale.setScalar(sleeveScale);
+      sleeve.rotation.set(progress < .5 ? .12 : 0, radians(pose.turn), -radians(pose.tilt));
       sleeve.visible = p.opacity.get() > .03 && progress < 5.85;
       if (progress < 5.05) {
         vinyl.position.copy(sleeve.position); vinyl.quaternion.copy(sleeve.quaternion); vinyl.scale.setScalar(sleeveScale);
@@ -194,7 +196,7 @@ export const PhysicalRecordStage: FC<Props> = props => {
       deck.arm.rotation.z = mix(deck.arm.rotation.z, p.playing ? -.12 : .48, 1 - Math.exp(-dt * 4));
       deck.light.emissiveIntensity = p.playing ? 1.8 : .05; deck.strobe.rotation.z = -rotation * .2;
       etchedGrooves.visible = vinyl.scale.x * .94 > 330;
-      element.dataset.pose = JSON.stringify({ p: progress, x: p.x.get(), y: p.y.get(), scale: p.scale.get(), w: p.width, h: p.height, base: p.baseSize });
+      element.dataset.pose = JSON.stringify({ p: progress, x: pose.x, y: pose.y, scale: pose.size / p.baseSize, visible: sleeve.visible, w: p.width, h: p.height, base: p.baseSize });
       renderer.render(scene, camera); raf = requestAnimationFrame(frame);
     };
     raf = requestAnimationFrame(frame);

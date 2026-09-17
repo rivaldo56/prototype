@@ -24,6 +24,14 @@
   --connection-bg: #17110c;
   --platform-icon-ink: #17110c;
 }
+.connections--atelier {
+  --connection-accent: #181818;
+  --connection-muted: #7a7a7a;
+  --connection-line: rgba(24, 24, 24, 0.15);
+  --connection-bg: #ececec;
+  --platform-icon-ink: #ececec;
+  color: #181818;
+}
 .connections-inner { max-width: 1200px; margin: auto; padding: 88px 40px 32px; }
 .connections-eyebrow { color: var(--connection-accent); font: 10px 'JetBrains Mono', monospace; letter-spacing: .16em; text-transform: uppercase; margin-bottom: 24px; }
 .podcast-connections h2 { font-family: 'Fraunces', Georgia, serif; font-weight: 400; font-size: clamp(32px, 4vw, 54px); letter-spacing: -.035em; line-height: 1.12; max-width: 740px; text-wrap: balance; }
@@ -74,6 +82,19 @@
 .connections--jukebox .sponsor-discipline { margin-top: 70px; background: transparent; }
 .connections--jukebox .sponsor-catalog { margin-top: 14px; }
 .connections--jukebox .sponsor-connection-tracer { stroke-dasharray: 1 3; animation-duration: 25s; opacity: .4; }
+
+/* Atelier: light editorial treatment with subtle wireframe orbits. */
+.connections--atelier h2 { font-family: 'Fraunces', Georgia, serif; font-weight: 500; }
+.connections--atelier .sponsor-motion-toggle { border-color: var(--connection-line); color: var(--connection-muted); }
+.connections--atelier .sponsor-motion-toggle:hover { color: #181818; border-color: #181818; }
+.connections--atelier .sponsor-wordmark { background: var(--connection-bg); font-family: 'Syne', sans-serif; font-weight: 700; letter-spacing: -.02em; }
+.connections--atelier .sponsor-discipline { background: var(--connection-bg); }
+.connections--atelier .platform-link:hover { background: rgba(24, 24, 24, 0.04); border-color: var(--connection-accent); }
+.connections--atelier .platform-icon { color: var(--connection-accent); }
+.connections--atelier .platform-icon svg circle { fill: var(--connection-accent); }
+.connections--atelier .platform-icon svg g { stroke: var(--connection-bg); }
+.connections--atelier .connections-signoff { color: var(--connection-muted); }
+.connections--atelier .connections-signoff > :first-child { color: #181818; }
 
 .platform-section .connections-inner { padding-top: 68px; }
 .platform-heading h2 { font-size: clamp(30px, 3.2vw, 44px); }

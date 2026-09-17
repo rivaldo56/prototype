@@ -7,13 +7,28 @@ import { ManifestoModal } from './components/common/ManifestoModal';
 import { EcoEditorialWorld } from './components/worlds/EcoEditorialWorld';
 import { ExecutiveInterviewWorld } from './components/worlds/ExecutiveInterviewWorld';
 import { MangoJukeboxWorld } from './components/worlds/MangoJukeboxWorld';
+import { AtelierReplicaWorld as AtelierWorld } from './components/worlds/atelier/AtelierReplicaWorld';
+
+import { MarginWorld, ShuffleWorld, FrequencyWorld } from './components/worlds/PrototypeWorlds';
+
+const worldKeys: WorldType[] = ['eco', 'executive', 'jukebox', 'margin', 'shuffle', 'frequency', 'atelier'];
+const worldFromUrl = (): WorldType => {
+  const value = new URLSearchParams(window.location.search).get('variant') as WorldType;
+  return worldKeys.includes(value) ? value : 'jukebox';
+};
 
 export default function App() {
-  const [currentWorld, setCurrentWorld] = useState<WorldType>('jukebox');
+  const [currentWorld, setCurrentWorld] = useState<WorldType>(worldFromUrl);
   const [activeEpisode, setActiveEpisode] = useState<Episode>(EPISODES[2]); // Start with Clint Carlos (The Polymath's Engine) or Jeffrey Yorzyk
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [currentTime, setCurrentTime] = useState<number>(0);
   const [isManifestoOpen, setIsManifestoOpen] = useState<boolean>(false);
+
+  useEffect(() => {
+    const onPopState = () => setCurrentWorld(worldFromUrl());
+    window.addEventListener('popstate', onPopState);
+    return () => window.removeEventListener('popstate', onPopState);
+  }, []);
 
   // Sync with AudioEngine
   useEffect(() => {
@@ -35,6 +50,9 @@ export default function App() {
 
   const handleSelectWorld = (world: WorldType) => {
     setCurrentWorld(world);
+    const url = new URL(window.location.href);
+    url.searchParams.set('variant', world);
+    window.history.pushState({}, '', url);
     audioEngine.triggerHapticClick(0.08);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -65,6 +83,10 @@ export default function App() {
 
       {/* World Canvas */}
       <div className="flex-1">
+        {(['margin', 'shuffle', 'frequency'] as WorldType[]).includes(currentWorld) && (() => {
+          const World = currentWorld === 'margin' ? MarginWorld : currentWorld === 'shuffle' ? ShuffleWorld : FrequencyWorld;
+          return <World episode={activeEpisode} episodes={EPISODES} isPlaying={isPlaying} currentTime={currentTime} onSeek={handleSeek} onSelectEpisode={handleSelectEpisode} />;
+        })()}
         {currentWorld === 'eco' && (
           <EcoEditorialWorld
             episode={activeEpisode}
@@ -97,6 +119,18 @@ export default function App() {
             isPlaying={isPlaying}
             currentTime={currentTime}
             onSeek={handleSeek}
+            onSelectWorld={handleSelectWorld}
+          />
+        )}
+
+        {currentWorld === 'atelier' && (
+          <AtelierWorld
+            episode={activeEpisode}
+            episodes={EPISODES}
+            isPlaying={isPlaying}
+            currentTime={currentTime}
+            onSeek={handleSeek}
+            onSelectEpisode={handleSelectEpisode}
             onSelectWorld={handleSelectWorld}
           />
         )}

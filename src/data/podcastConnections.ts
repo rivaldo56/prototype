@@ -8,7 +8,7 @@ export const PODCAST_PLATFORMS = [
 ] as const;
 
 // Fictional identities for the sponsor design preview, not actual endorsements.
-export const SPONSOR_PREVIEWS: Record<WorldType, { name: string; discipline: string }[]> = {
+export const SPONSOR_PREVIEWS: Record<Extract<WorldType, 'eco' | 'executive' | 'jukebox' | 'atelier'>, { name: string; discipline: string }[]> = {
   eco: [
     { name: 'canopy', discipline: 'Rooted in nature' },
     { name: 'fieldwork', discipline: 'Made for the outdoors' },
@@ -23,5 +23,10 @@ export const SPONSOR_PREVIEWS: Record<WorldType, { name: string; discipline: str
     { name: 'SIDE A', discipline: 'Independent sound' },
     { name: 'OFFBEAT', discipline: 'A different rhythm' },
     { name: 'GOOD TONE', discipline: 'For the love of listening' },
+  ],
+  atelier: [
+    { name: 'STUDIO', discipline: 'Crafted with care' },
+    { name: 'ATELIER', discipline: 'Made by hand' },
+    { name: 'FOLIO', discipline: 'Selected works' },
   ],
 };

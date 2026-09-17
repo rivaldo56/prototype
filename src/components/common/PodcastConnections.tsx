@@ -7,13 +7,14 @@ import { PODCAST_PLATFORMS, SPONSOR_PREVIEWS } from '../../data/podcastConnectio
 import './podcast-connections.css';
 
 interface WorldSectionProps {
-  world: WorldType;
+  world: Extract<WorldType, 'eco' | 'executive' | 'jukebox' | 'atelier'>;
 }
 
 const COPY = {
   eco: { eyebrow: 'A shared ecosystem', title: 'Good company. Common ground.', description: 'A space for the people and brands helping thoughtful conversations grow.' },
   executive: { eyebrow: 'The partner network', title: 'Aligned in ambition.', description: 'Independent perspectives. Shared standards. A considered space for our partners.' },
   jukebox: { eyebrow: 'The supporting acts', title: 'Better in good company.', description: 'Room on the record for the brands that keep independent voices spinning.' },
+  atelier: { eyebrow: 'The studio patrons', title: 'Craft in good company.', description: 'Partners who believe podcasts can be as considered as any portfolio piece.' },
 };
 
 export const SponsorsSection: FC<WorldSectionProps> = ({ world }) => {
@@ -58,7 +59,7 @@ export const SponsorsSection: FC<WorldSectionProps> = ({ world }) => {
                 </div>
                 <div className="sponsor-wordmark">{sponsor.name}</div>
                 <span className="sponsor-discipline">{sponsor.discipline}</span>
-                <span className="sponsor-catalog">0{index + 1} / {world === 'jukebox' ? 'SIDE B' : 'PARTNER'}</span>
+                <span className="sponsor-catalog">0{index + 1} / {world === 'jukebox' ? 'SIDE B' : world === 'atelier' ? 'PATRON' : 'PARTNER'}</span>
               </li>
             ))}
           </ul>
@@ -74,7 +75,15 @@ export const PodcastPlatformLinks: FC<WorldSectionProps> = ({ world }) => (
     <div className="connections-inner">
       <div className="platform-heading">
         <p className="connections-eyebrow">Listen / Watch / Discover</p>
-        <h2 id={`platforms-${world}`}>{world === 'eco' ? 'Find your next conversation.' : world === 'executive' ? 'A different perspective. On your terms.' : 'Same curiosity. Different frequencies.'}</h2>
+        <h2 id={`platforms-${world}`}>
+          {world === 'eco'
+            ? 'Find your next conversation.'
+            : world === 'executive'
+            ? 'A different perspective. On your terms.'
+            : world === 'atelier'
+            ? 'Selected conversations. Every platform.'
+            : 'Same curiosity. Different frequencies.'}
+        </h2>
         <p className="connections-description">Explore podcast platforms.</p>
       </div>
       <nav className="platform-links" aria-label="Podcast platforms">
