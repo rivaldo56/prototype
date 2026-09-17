@@ -1,0 +1,39 @@
+{
+  "project": "MangoMagic next-gen podcast experiences",
+  "designContext": {
+    "fonts": ["Syne", "Fraunces", "Plus Jakarta Sans", "JetBrains Mono"],
+    "shufflePalette": {
+      "flamingo": "#f48c9c",
+      "blush": "#fce8e4",
+      "cream": "#fff6e5",
+      "plum": "#49323e",
+      "pistachio": "#dde7b5",
+      "poolBlue": "#b9dfe5",
+      "roseRule": "#cba9af"
+    },
+    "constraints": [
+      "seven sections per prototype world",
+      "shared MoreSections content parity across worlds",
+      "44px minimum touch targets",
+      "aria-pressed selection states",
+      "prefers-reduced-motion support"
+    ]
+  },
+  "decisions": [
+    {
+      "date": "2026-09-15",
+      "scope": "Shuffle world redesign",
+      "chosen": "Listening Club Cards",
+      "rejected": ["Poolside Radio", "Coverflow Stroll"],
+      "reason": "Cream-first calm with flamingo as accent; now-playing desk card leads, episode card grid scales with the catalog.",
+      "implementation": ["src/components/worlds/shuffle-summer.css", "ShuffleWorld in src/components/worlds/PrototypeWorlds.tsx"]
+    },
+    {
+      "date": "2026-09-15",
+      "scope": "Section differentiation audit",
+      "chosen": "Per-world visual language for shared sections",
+      "reason": "Same message, different look: Margin keeps hairline print rules, Shuffle uses rounded cards and bubbles, Frequency uses kinetic poster rows, orbit portrait, and acid chips.",
+      "implementation": ["src/components/worlds/shuffle-summer.css", "src/components/worlds/frequency-kinetic.css"]
+    }
+  ]
+}

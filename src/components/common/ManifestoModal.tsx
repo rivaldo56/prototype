@@ -5,7 +5,7 @@ import { X, ArrowUpRight, Compass, Sparkles, Layers, Sliders, CheckCircle2, XCir
 interface ManifestoModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onSelectWorld: (world: 'eco' | 'executive' | 'jukebox') => void;
+  onSelectWorld: (world: 'eco' | 'executive' | 'jukebox' | 'atelier') => void;
 }
 
 export const ManifestoModal: React.FC<ManifestoModalProps> = ({
@@ -176,6 +176,33 @@ export const ManifestoModal: React.FC<ManifestoModalProps> = ({
                     Launch World <ArrowUpRight className="w-3.5 h-3.5" />
                   </button>
                 </div>
+              </div>
+
+              {/* World 4 */}
+              <div className="p-5 rounded-xl bg-neutral-950 border border-neutral-800 hover:border-[#ececec]/40 transition-colors flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div className="space-y-1">
+                  <div className="flex items-center gap-3">
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#ececec]" />
+                    <h4 className="font-editorial text-lg font-bold text-white">
+                      World 4: Atelier (Portfolio Showreel)
+                    </h4>
+                    <span className="px-2 py-0.5 rounded text-[10px] font-mono-tech bg-[#ececec]/10 text-[#ececec]">
+                      Editorial Portfolio
+                    </span>
+                  </div>
+                  <p className="text-xs text-neutral-400 font-sans-clean leading-relaxed">
+                    A scroll-driven portfolio experience adapted from huyml.co. Warm editorial backgrounds, mix-blend-mode UI, a floating episode info card, and case-study pages that treat every conversation like a selected work.
+                  </p>
+                </div>
+                <button
+                  onClick={() => {
+                    onSelectWorld('atelier');
+                    onClose();
+                  }}
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#ececec]/10 hover:bg-[#ececec]/20 text-white text-xs font-medium border border-[#ececec]/20 transition-colors self-start md:self-center shrink-0 cursor-pointer"
+                >
+                  Launch World <ArrowUpRight className="w-3.5 h-3.5" />
+                </button>
               </div>
             </div>
 

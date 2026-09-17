@@ -1,5 +1,30 @@
 @import "tailwindcss";
 
+/* Tokens used by the shadcn-style components in src/components/ui.
+   Worlds can re-scope them locally to keep their own palette. */
+@theme {
+  --color-background: #14120d;
+  --color-foreground: #f4efe4;
+  --color-muted: #2b2619;
+  --color-muted-foreground: #a89e8c;
+  --color-ring: #e0b64c;
+}
+
+@keyframes cover-fade {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.animate-in.fade-in {
+  animation: cover-fade 0.3s ease both;
+}
+
 @layer base {
   :root {
     --font-serif: 'Fraunces', Georgia, serif;

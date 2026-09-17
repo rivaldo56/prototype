@@ -55,7 +55,7 @@ export const StudioBar: React.FC<StudioBarProps> = ({
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 px-3 md:px-6 py-2.5 bg-black/80 backdrop-blur-xl border-b border-white/10 select-none">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
+      <div className="max-w-7xl mx-auto flex flex-col xl:flex-row items-center justify-between gap-3">
         {/* Brand & Episode Quick Select */}
         <div className="flex items-center justify-between w-full md:w-auto gap-4">
           <div className="flex items-center gap-2.5">
@@ -114,39 +114,19 @@ export const StudioBar: React.FC<StudioBarProps> = ({
           </div>
         </div>
 
-        {/* Center: The Three Paradigms Switcher */}
-        <div className="flex items-center gap-1 bg-neutral-900/90 p-1 rounded-full border border-neutral-800 text-xs font-mono-tech">
-          <button
-            onClick={() => onSelectWorld('eco')}
-            className={`px-3 py-1.5 rounded-full transition-all cursor-pointer ${
-              currentWorld === 'eco'
-                ? 'bg-emerald-500 text-neutral-950 font-bold shadow-md'
-                : 'text-neutral-400 hover:text-white'
-            }`}
-          >
-            I. Eco Editorial
-          </button>
-          <button
-            onClick={() => onSelectWorld('executive')}
-            className={`px-3 py-1.5 rounded-full transition-all cursor-pointer ${
-              currentWorld === 'executive'
-                ? 'bg-white text-neutral-950 font-bold shadow-md'
-                : 'text-neutral-400 hover:text-white'
-            }`}
-          >
-            II. Executive Monolith
-          </button>
-          <button
-            onClick={() => onSelectWorld('jukebox')}
-            className={`px-3 py-1.5 rounded-full transition-all cursor-pointer ${
-              currentWorld === 'jukebox'
-                ? 'bg-amber-400 text-neutral-950 font-bold shadow-md'
-                : 'text-neutral-400 hover:text-white'
-            }`}
-          >
-            III. 3D Jukebox
-          </button>
-        </div>
+        {/* Template selector: all six worlds, without crowding the player. */}
+        <label className="flex items-center gap-2 text-xs font-mono-tech text-neutral-400">
+          <span className="text-[10px] uppercase">Template</span>
+          <select aria-label="Choose template" value={currentWorld} onChange={event => onSelectWorld(event.target.value as WorldType)} className="bg-neutral-900 text-white border border-neutral-700 rounded-full px-4 py-2 cursor-pointer max-w-[230px]">
+            <option value="eco">I. Eco Editorial</option>
+            <option value="executive">II. Executive Monolith</option>
+            <option value="jukebox">III. 3D Jukebox</option>
+            <option value="margin">IV. Margin — Minimal</option>
+            <option value="shuffle">V. Shuffle — Interactive</option>
+            <option value="frequency">VI. Frequency — Motion</option>
+            <option value="atelier">VII. Atelier — Portfolio</option>
+          </select>
+        </label>
 
         {/* Right: Master Audio Quick-Controller & Director's Manifesto */}
         <div className="flex items-center gap-3">
