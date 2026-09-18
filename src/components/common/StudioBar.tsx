@@ -125,6 +125,7 @@ export const StudioBar: React.FC<StudioBarProps> = ({
             <option value="shuffle">V. Shuffle — Interactive</option>
             <option value="frequency">VI. Frequency — Motion</option>
             <option value="atelier">VII. Atelier — Portfolio</option>
+            <option value="sunset">VIII. Sunset — Catalogue</option>
           </select>
         </label>
 

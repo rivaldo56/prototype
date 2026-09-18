@@ -10,8 +10,9 @@ import { MangoJukeboxWorld } from './components/worlds/MangoJukeboxWorld';
 import { AtelierReplicaWorld as AtelierWorld } from './components/worlds/atelier/AtelierReplicaWorld';
 
 import { MarginWorld, ShuffleWorld, FrequencyWorld } from './components/worlds/PrototypeWorlds';
+import { SunsetCatalogueWorld } from './components/worlds/SunsetCatalogueWorld';
 
-const worldKeys: WorldType[] = ['eco', 'executive', 'jukebox', 'margin', 'shuffle', 'frequency', 'atelier'];
+const worldKeys: WorldType[] = ['eco', 'executive', 'jukebox', 'margin', 'shuffle', 'frequency', 'atelier', 'sunset'];
 const worldFromUrl = (): WorldType => {
   const value = new URLSearchParams(window.location.search).get('variant') as WorldType;
   return worldKeys.includes(value) ? value : 'jukebox';
@@ -132,6 +133,17 @@ export default function App() {
             onSeek={handleSeek}
             onSelectEpisode={handleSelectEpisode}
             onSelectWorld={handleSelectWorld}
+          />
+        )}
+
+        {currentWorld === 'sunset' && (
+          <SunsetCatalogueWorld
+            episode={activeEpisode}
+            episodes={EPISODES}
+            isPlaying={isPlaying}
+            currentTime={currentTime}
+            onSeek={handleSeek}
+            onSelectEpisode={handleSelectEpisode}
           />
         )}
       </div>
